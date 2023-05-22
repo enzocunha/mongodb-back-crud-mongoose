@@ -1,42 +1,45 @@
-import Author from "@/models/Author";
 import Book from "@/models/Book";
 
 const bookController = {
-  async getBooks() {
-    const books = await Book.find().populate("author");
-    return books;
-  },
+	async getBooks() {
+		const books = await Book.find();
+		return books;
+	},
 
-  async getBook(id) {
-    const book = await Book.findById(id).populate("author");
-    return book;
-  },
+	async getBook(id) {
+		const book = await Book.findById(id);
+		return book;
+	},
 
-  async createOrFindAuthor({ name, nationality }) {
-    let author = await Author.findOne({ name: name });
+	async createBook({ title, description, author }) {
+		const book = new Book({
+			title: title,
+			description: description,
+			author: author,
+		});
 
-    // If author exists, return author
-    if (author) {
-      return author;
-    }
+		return book.save();
+	},
 
-    // Create and return author
-    author = new Author({ name: name, nationality: nationality });
-    return author.save();
-  },
+	async updateBook(id, data) {
+		const book = Book.findByIdAndUpdate(id, data, { new: true });
 
-  async createBook({ title, description, cover, author_data }) {
-    const author = await this.createOrFindAuthor(author_data);
+		if (!book) {
+			throw new Error("Book not found.");
+		}
 
-    const book = new Book({
-      title: title,
-      description: description,
-      cover: cover,
-      author: author._id,
-    });
+		return book;
+	},
 
-    return book.save();
-  },
+	async deleteBook(id) {
+		const book = Book.findByIdAndDelete(id);
+
+		if (!book) {
+			throw new Error("Book not found.");
+		}
+
+		return book;
+	},
 };
 
 export default bookController;

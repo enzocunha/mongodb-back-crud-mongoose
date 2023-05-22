@@ -11,3 +11,4 @@ This is a simple CRUD with Mongoose and NextJS for a simple API.
 3. Install `mongoose` and create the [models](/models) for the database
 4. Create a [connection](/lib/dbConnect.js) to the database
 5. Create the [routes](/pages/api/) for the API using the connection
+6. For better organization use [controllers](/controllers) to handle the manipulation of the data

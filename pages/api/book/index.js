@@ -20,9 +20,9 @@ export default async function handler(req, res) {
 			break;
 		case "POST":
 			try {
-				const { title, description, cover, author_data } = req.body;
+				const { title, description, author } = req.body;
 
-				if (!title || !description || !cover || !author_data) {
+				if (!title || !author) {
 					res.status(400).json({
 						success: false,
 						message: "Missing fields",
@@ -33,8 +33,7 @@ export default async function handler(req, res) {
 				const book = await bookController.createBook({
 					title: title,
 					description: description,
-					cover: cover,
-					author_data: author_data,
+					author: author,
 				});
 
 				res.status(201).json({ success: true, data: book });
