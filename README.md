@@ -1,8 +1,6 @@
 # Back Crud with Mongoose
 
-## Description
-
-This is a simple CRUD with Mongoose and NextJS for a simple API.
+Case Study: Mongoose ORM and MongoDB
 
 ## Steps
 
@@ -12,3 +10,9 @@ This is a simple CRUD with Mongoose and NextJS for a simple API.
 4. Create a [connection](/lib/dbConnect.js) to the database
 5. Create the [routes](/pages/api/) for the API using the connection
 6. For better organization use [controllers](/controllers) to handle the manipulation of the data
+
+## References
+
+- [Mongoose Docs](https://mongoosejs.com/docs/guide.html)
+- [MongoDB Atlas Docs](https://docs.atlas.mongodb.com/)
+- [NextJS with Mongoose Example](https://github.com/vercel/next.js/tree/canary/examples/with-mongodb-mongoose)
